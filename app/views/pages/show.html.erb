@@ -19,13 +19,16 @@
   <% end %>
 </div>
 
-<h1><%= @page.name %></h1>
+<h1><span id="page_name" data-mercury="full"><%= raw @page.name %></span></h1>
+
+<div id="page_content" data-mercury="full">
+  <%= #simple_format
+      #raw textilize(@page.content)
+      raw RedCloth.new(@page.content).to_html
+  %>
+</div>
 
 
-<%= #simple_format
-   #raw textilize(@page.content)
-   raw RedCloth.new(@page.content).to_html
-%>
-
-<%= link_to 'Edit', edit_page_path(@page) %> |
+<%= link_to 'Edit', edit_page_path(@page) %>
+<%= link_to "Edit Page with mercury", "/editor" + request.path, id: "edit_link", data: {save_url: mercury_update_page_path(@page)} %>
 <%= link_to 'Back', pages_path %>

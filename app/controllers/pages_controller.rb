@@ -40,6 +40,13 @@ class PagesController < ApplicationController
   # PATCH/PUT /pages/1
   # PATCH/PUT /pages/1.json
   def update
+    if request.xhr?
+      page.name = params[:content][:page_name][:value]
+      page.content = params[:content][:page_content][:value]
+      page.save!
+      return render text: ''
+    end
+
     respond_to do |format|
       if @page.update(page_params)
         format.html { redirect_to @page, notice: 'Page was successfully updated.' }
@@ -59,6 +66,13 @@ class PagesController < ApplicationController
       format.html { redirect_to pages_url, notice: 'Page was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def mercury_update
+    page.name = params[:content][:page_name][:value]
+    page.content = params[:content][:page_content][:value]
+    page.save!
+    render text: ''
   end
 
   private

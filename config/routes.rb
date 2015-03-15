@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  mount Mercury::Engine => '/'
+  Mercury::Engine.routes
   #resources :pages
   #get ':id', to: 'pages#show'
   root to: 'pages#index'
-  resources :pages #, only: [:index, :new, :create]
+  resources :pages do #, only: [:index, :new, :create]
+    member { put :mercury_update }
+  end
   #resources :pages, path: '', except: [:index, :new, :create]
   get ':id', to: 'redirect#index'
   get ':id', to: 'pages#show'
