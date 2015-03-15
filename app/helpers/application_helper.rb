@@ -44,4 +44,25 @@ module ApplicationHelper
     Redcarpet::Markdown.new(renderer, options).render(text).html_safe
   end
 
+  def simple_error_messages_for(object_name)
+    object = instance_variable_get("@#{object_name}")
+    return if object.errors.empty?
+
+    markaby do
+      div.error_messages! do
+        h2 "#{pluralize(object.errors.count, 'error')} occurred"
+        p "There were problems with the following fields:"
+        ul do
+          object.errors.each_full do |msg|
+            li msg
+          end
+        end
+      end
+    end
+  end
+
+  def markaby(&block)
+    Markaby::Builder.new({}, self, &block)
+  end
+
 end
