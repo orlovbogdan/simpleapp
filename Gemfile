@@ -51,3 +51,6 @@ gem 'ancestry'
 gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
 
 gem 'liquid'
+gem 'redcarpet'
+gem 'pygments.rb'
+gem 'nokogiri'

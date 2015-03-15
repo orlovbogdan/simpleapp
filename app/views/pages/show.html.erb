@@ -25,7 +25,8 @@
   <%= #simple_format
       #raw textilize(@page.content)
       #raw RedCloth.new(@page.content).to_html
-      raw RedCloth.new(Liquid::Template.parse(@page.content).render('page' => @page, :filters => [LiquidFilters])).to_html
+      #raw RedCloth.new(Liquid::Template.parse(@page.content).render('page' => @page, :filters => [LiquidFilters])).to_html
+      markdown(@page.content)
   %>
 </div>
 
