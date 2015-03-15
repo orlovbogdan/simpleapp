@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315185126) do
+ActiveRecord::Schema.define(version: 20150315231631) do
 
   create_table "pages", force: :cascade do |t|
     t.string   "name"
@@ -27,5 +27,12 @@ ActiveRecord::Schema.define(version: 20150315185126) do
 
   add_index "pages", ["ancestry"], name: "index_pages_on_ancestry"
   add_index "pages", ["slug"], name: "index_pages_on_slug"
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

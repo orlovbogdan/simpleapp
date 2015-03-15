@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   Mercury::Engine.routes
   #resources :pages
   #get ':id', to: 'pages#show'
-  root to: 'pages#index'
+  root to: 'products#index'
+  resource :products
   resources :pages do #, only: [:index, :new, :create]
     member { put :mercury_update }
   end
