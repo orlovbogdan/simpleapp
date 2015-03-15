@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  #resources :pages
+  #get ':id', to: 'pages#show'
+  root to: 'pages#index'
+  resources :pages #, only: [:index, :new, :create]
+  #resources :pages, path: '', except: [:index, :new, :create]
+  get ':id', to: 'redirect#index'
+  get ':id', to: 'pages#show'
+  get '*id', to: 'pages#show'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

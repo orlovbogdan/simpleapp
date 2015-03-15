@@ -43,3 +43,7 @@ group :development, :test do
   gem 'spring'
 end
 
+
+gem 'RedCloth'
+gem 'acts_as_tree'
+gem 'ancestry'
