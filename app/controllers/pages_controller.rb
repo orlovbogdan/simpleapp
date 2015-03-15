@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   before_action :page, only: [:show, :edit, :update, :destroy]
 
+  layout :set_layout
+
   # GET /pages
   # GET /pages.json
   def index
@@ -10,6 +12,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
+    #self.class.layout(@page.layout_name || 'application')
   end
 
   # GET /pages/new
@@ -76,6 +79,10 @@ class PagesController < ApplicationController
   end
 
   private
+
+    def set_layout
+      ((params[:action] == 'show') && @page && @page.layout_name) || 'application'
+    end
     # Use callbacks to share common setup or constraints between actions.
     def page
       @page ||= Page.find_by_slug!(params[:id].split('/').last)
@@ -85,6 +92,6 @@ class PagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:name, :slug, :content, :parent_id)
+      params.require(:page).permit(:name, :slug, :content, :parent_id, :layout_name, :custom_layout_content)
     end
 end

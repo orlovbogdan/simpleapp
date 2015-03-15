@@ -49,3 +49,5 @@ gem 'acts_as_tree'
 gem 'ancestry'
 
 gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
+
+gem 'liquid'
