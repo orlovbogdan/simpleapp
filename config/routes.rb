@@ -1,11 +1,22 @@
 Rails.application.routes.draw do
+  root to: 'products#index'
+
   mount Mercury::Engine => '/'
   Mercury::Engine.routes
+
+  get 'log_out' => 'sessions#destroy', as: 'log_out'
+  get 'log_in' => 'sessions#new', as: 'log_in'
+  get 'sign_up' => 'users#new', as: 'sign_up'
+  resource :users
+  resource :sessions
+
+  resource :products
+
+
+
+
   #resources :pages
   #get ':id', to: 'pages#show'
-  root to: 'products#index'
-  resource :sessions
-  resource :products
   resources :pages do #, only: [:index, :new, :create]
     member { put :mercury_update }
   end
