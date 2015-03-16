@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   #resources :pages
   #get ':id', to: 'pages#show'
   root to: 'products#index'
+  resource :sessions
   resource :products
   resources :pages do #, only: [:index, :new, :create]
     member { put :mercury_update }

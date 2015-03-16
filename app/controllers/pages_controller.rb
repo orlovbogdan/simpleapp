@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+  #before_action :authorize, except: :index
+  before_action :authenticate, except: :index
+
   before_action :page, only: [:show, :edit, :update, :destroy]
 
   layout :set_layout
