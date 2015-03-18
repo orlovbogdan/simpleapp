@@ -4,8 +4,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(users_params)
+    @user = params[:user] ? User.new(users_params) : User.new_guest
     if @user.save
+      current_user.move_to(@user) if current_user && current_user.guest?
       session[:user_id] = @user.id
       redirect_to root_url, :notice => "Signed up!"
     else
