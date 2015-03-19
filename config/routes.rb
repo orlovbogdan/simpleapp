@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resource :users
   resource :sessions
   resources :password_resets
+
+
   resource :products
 
 

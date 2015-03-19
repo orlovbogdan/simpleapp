@@ -55,3 +55,10 @@ gem 'redcarpet'
 gem 'pygments.rb'
 gem 'nokogiri'
 gem 'markaby'
+
+gem 'rspec-rails', :group => [:test, :development]
+group :test do
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'guard-rspec'
+end
