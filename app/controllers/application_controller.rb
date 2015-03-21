@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :authorize
+  delegate :allow?, to: :current_permission
+  helper_method :allow?
+
+  delegate :allow_param?, to: :current_permission
+  helper_method :allow_param?
+
   helper_method :admin?
   helper_method :current_user
 
@@ -13,6 +20,20 @@ class ApplicationController < ActionController::Base
       flash[:error] = 'unauthorize access'
       redirect_to pages_path
     end
+  end
+
+  def autorize
+    if !current_permission.allow?(params[:controller], params[:action], current_permission)
+      redirect_to root_url, aler: "Not autorized."
+    end
+  end
+
+  def current_permission
+    @current_permission ||= Permission.new(current_user)
+  end
+
+  def current_resource
+    nil
   end
 
   def admin?

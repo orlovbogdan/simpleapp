@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-  #before_action :authorize, except: :index
   before_action :authenticate, except: :index
 
   before_action :page, only: [:show, :edit, :update, :destroy]
@@ -97,4 +96,9 @@ class PagesController < ApplicationController
     def page_params
       params.require(:page).permit(:name, :slug, :content, :parent_id, :layout_name, :custom_layout_content)
     end
+
+    def current_resource
+      page
+    end
+
 end
