@@ -16,14 +16,16 @@
 
 <%#= render 'shared/custom_pagination', entity: @users %>
 
-<table>
+<table id="users" data-url="<%=users_path(live: true) %>">
   <tr>
     <th><%= sortable 'email' %></th>
+    <th><%= sortable('created_at', 'Created At') %></th>
     <th>Add friend</th>
   </tr>
   <% for user in @users %>
       <tr>
           <td><%= user.email %></td>
+          <td><%= user.created_at %></td>
           <td><%= link_to 'Add Friend', friendships_path(:friend_id => user), :method => :post %></td>
       </tr>
   <% end %>
