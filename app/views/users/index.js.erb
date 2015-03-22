@@ -4,3 +4,4 @@ if (<%= !!params[:endless] %>){
     $('#content').html('<%=j render(template: 'users/index.html') %>')
 }
 $('#search_form input').trigger('focus');
+document.title = "<%= escape_javascript("#{params[:search].to_s.titleize} Users by #{(params[:sort] || 'name').titleize} - Page #{params[:page] || 1}") %>";
