@@ -12,4 +12,13 @@ $(function(){
     $.get($('#search_form').attr('action'), $('#search_form').serialize(), null, 'script');
     return false;
   });
+
+  $(window).scroll(function(){
+    var url = $('.pagination .next a').attr('href');
+    if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50){
+      $(".pagination").html("Page is loading...");
+      $.getScript(url + '?endless=true');
+    }
+  })
+
 })

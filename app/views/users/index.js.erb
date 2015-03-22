@@ -1,2 +1,6 @@
-$('#content').html('<%=j render(template: 'users/index.html') %>')
+if (<%= !!params[:endless] %>){
+    $('#content').append('<%=j render(template: 'users/index.html') %>')
+} else {
+    $('#content').html('<%=j render(template: 'users/index.html') %>')
+}
 $('#search_form input').trigger('focus');
