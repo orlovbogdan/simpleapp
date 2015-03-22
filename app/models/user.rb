@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
   end
 
   def name
-    guest ? "Guest" : username
+    guest ? "Guest" : email
   end
 
   def move_to(user)

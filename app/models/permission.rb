@@ -1,6 +1,6 @@
 class Permission
   def initialize(user)
-    allow :users, [:new, :create]
+    allow :users, [:index, :new, :create]
     allow :sessions, [:new, :create, :destroy]
     allow :pages, [:index, :indexx, :show]
     if user

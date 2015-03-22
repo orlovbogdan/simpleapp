@@ -1,4 +1,4 @@
-class InvitationController < ActionController::Base
+class InvitationsController < ActionController::Base
   def new
     @invitation = Invitation.new
   end
