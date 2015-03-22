@@ -1,4 +1,5 @@
 .pagination {
+  margin-bottom: 10px;
   background: white;
   cursor: default;
   height: 22px;
@@ -40,4 +41,21 @@
       padding: 0.1em 0.25em;
     }
   }
+}
+
+
+
+
+th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+th .asc {
+  background-image: url(/images/up_arrow.gif);
+}
+
+th .desc {
+  background-image: url(/images/down_arrow.gif);
 }

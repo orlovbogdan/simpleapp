@@ -95,6 +95,15 @@ class User < ActiveRecord::Base
     self.invitation = Invitation.find_by_token(token)
   end
 
+
+  def self.search(search)
+    if search
+      where('email LIKE ?', "%#{search}%")
+    else
+      all #scoped
+    end
+  end
+
   private
 
   def set_invitation_limit
