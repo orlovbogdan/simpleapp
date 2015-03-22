@@ -1,11 +1,16 @@
-<% title "User List" %>
+<% title 'User List' %>
+
+<%= paginate @users %>
+<%#= will_paginate @users, previous_label: "<", next_label: ">" %>
+
+<%#= render 'shared/custom_pagination', entity: @users %>
 
 <div id="users">
   <% for user in @users %>
       <div class="user">
         <p>
           <strong><%=h user.name %></strong>
-          <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
+          <%= link_to 'Add Friend', friendships_path(:friend_id => user), :method => :post %>
         <div class="clear"></div>
         </p>
       </div>

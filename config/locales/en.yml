@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+  views:
+    pagination:
+      previous: "&lt; Prevvvvious"
+      next: "Nexxxxt &gt;"
+      truncate: ".."

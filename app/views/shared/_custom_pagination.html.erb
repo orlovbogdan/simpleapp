@@ -1,0 +1,7 @@
+<% if entity.previous_page %>
+    <%= link_to '< Previous', params.merge(page: entity.previous_page) %>
+<% end %>
+Page <%= entity.current_page %> of <%= entity.total_pages %>
+<% if entity.next_page %>
+    <%= link_to 'Next >', params.merge(page: entity.next_page) %>
+<% end %>

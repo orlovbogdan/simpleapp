@@ -62,3 +62,6 @@ group :test do
   gem 'capybara'
   gem 'guard-rspec'
 end
+
+#gem 'will_paginate'
+gem 'kaminari'
