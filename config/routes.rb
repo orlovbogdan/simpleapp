@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'products#index'
+  root to: 'pages#index'
 
   mount Mercury::Engine => '/'
   Mercury::Engine.routes
@@ -12,15 +12,13 @@ Rails.application.routes.draw do
   resources :password_resets
 
 
-  resource :products
-
-
 
 
   #resources :pages
   #get ':id', to: 'pages#show'
   resources :pages do #, only: [:index, :new, :create]
     member { put :mercury_update }
+    get :indexx, on: :collection
   end
   #resources :pages, path: '', except: [:index, :new, :create]
   get ':id', to: 'redirect#index'

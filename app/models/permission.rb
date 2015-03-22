@@ -2,14 +2,14 @@ class Permission
   def initialize(user)
     allow :users, [:new, :create]
     allow :sessions, [:new, :create, :destroy]
-    allow :topics, [:index, :show]
+    allow :pages, [:index, :indexx, :show]
     if user
       allow :users, [:edit, :update]
-      allow :topics, [:new, :create]
-      allow :topics, [:edit, :update] do |topic|
-        topic.user_id == user.id
+      allow :pages, [:new, :create]
+      allow :pages, [:edit, :update] do |page|
+        page.user_id == user.id
       end
-      allow_param :topic, [:name]
+      allow_param :page, [:name]
       allow_all if user.admin?
     end
   end

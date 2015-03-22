@@ -4,25 +4,39 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :authorize
+
   delegate :allow?, to: :current_permission
   helper_method :allow?
 
   delegate :allow_param?, to: :current_permission
   helper_method :allow_param?
 
-  helper_method :admin?
   helper_method :current_user
+
+
+  #helper_method :admin?
+
+  #def authorize
+  #  unless admin?
+  #    flash[:error] = 'unauthorize access'
+  #    redirect_to pages_path
+  #  end
+  #end
+
+  #def admin?
+  #  session[:password] == 'foobar'
+  #end
+
+  #def authenticate
+  #  authenticate_or_request_with_http_basic do |username, password|
+  #    username == 'foo' && password == 'bar'
+  #  end
+  #  http_basic_authenticate_with :name => "frodo", :password => "thering"
+  #end
 
   protected
 
   def authorize
-    unless admin?
-      flash[:error] = 'unauthorize access'
-      redirect_to pages_path
-    end
-  end
-
-  def autorize
     if !current_permission.allow?(params[:controller], params[:action], current_permission)
       redirect_to root_url, aler: "Not autorized."
     end
@@ -36,27 +50,19 @@ class ApplicationController < ActionController::Base
     nil
   end
 
-  def admin?
-    session[:password] == 'foobar'
-  end
-
-  def authenticate
-    authenticate_or_request_with_http_basic do |username, password|
-      username == 'foo' && password == 'bar'
-    end
-    http_basic_authenticate_with :name => "frodo", :password => "thering"
-  end
-
   private
 
   def current_user
     #@current_user ||= User.find(session[:user_id]) if session[:user_id]
-    @current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
+    @current_user ||= (User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token])
     unless @current_user
-      @user = User.new_guest
-      @user.save!
-      @user
+      @current_user = User.new_guest
+      @current_user.save!
+      #session[:user_id] = @current_user.id
+      cookies[:auth_token] = @current_user.auth_token
+      @current_user
     end
+    @current_user
   end
 
 end

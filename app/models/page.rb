@@ -1,4 +1,6 @@
 class Page < ActiveRecord::Base
+  belongs_to :user
+
   validates :slug, uniqueness: true, presence: true, exclusion: {in: %w[signup login]}
 
   acts_as_tree

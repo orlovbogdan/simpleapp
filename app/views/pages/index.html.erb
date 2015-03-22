@@ -19,8 +19,10 @@
         <td><%= page.slug %></td>
         <td><%= page.content %></td>
         <td><%= link_to 'Show', page %></td>
-        <% if admin? %>
+        <% if allow?(:pages, :edit, page) %>
           <td><%= link_to 'Edit', edit_page_path(page) %></td>
+        <% end %>
+        <% if allow?(:pages, :destroy) %>
           <td><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
@@ -29,7 +31,7 @@
 </table>
 
 <br>
-<% if admin? %>
+<% if allow?(:pages, :new) %>
 <%= link_to 'New Page', new_page_path %>
 <% end %>
 <p><%#= button_to "Try it for free!", users_path, method: :post %></p>

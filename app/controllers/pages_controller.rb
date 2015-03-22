@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :authenticate, except: :index
+  #before_action :authenticate, except: :index
 
   before_action :page, only: [:show, :edit, :update, :destroy]
 
@@ -30,6 +30,7 @@ class PagesController < ApplicationController
   # POST /pages.json
   def create
     @page = Page.new(page_params)
+    @page.user = current_user
 
     respond_to do |format|
       if @page.save
