@@ -9,7 +9,8 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @user = User.new(:invitation_token => params[:invitation_token])
+    @user.email = @user.invitation.recipient_email if @user.invitation
   end
 
   def create

@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322062255) do
+ActiveRecord::Schema.define(version: 20150322091714) do
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.string   "recipient_email"
+    t.string   "token"
+    t.datetime "sent_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "pages", force: :cascade do |t|
     t.string   "name"
@@ -40,6 +56,8 @@ ActiveRecord::Schema.define(version: 20150322062255) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.boolean  "guest"
+    t.integer  "invitation_id"
+    t.integer  "invitation_limit"
   end
 
 end
