@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   before_create :set_invitation_limit
 
-  validates_presence_of :invitation_id, :message => 'is required'
+  #validates_presence_of :invitation_id, :message => 'is required'
   validates_uniqueness_of :invitation_id
 
 
